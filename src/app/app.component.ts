@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Http } from '@angular/http';
 
 @Component({
   selector: 'app-root',
@@ -7,8 +8,27 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  imageUpload(event){
-    console.log(event);
+  images:any;
+
+  constructor(
+    private http:Http
+  ) { }
+
+  imageUpload(event:any){
+    if(event.target.files.length>=1){
+      console.log(event.target.files.length);
+      const file=event.target.files[0];
+      this.images=file;
+    }
+  }
+
+  submit(){
+    let formData=new FormData();
+    formData.append('file',this.images);
+    this.http.post('http://localhost:3000/file',formData).subscribe(res=>{
+      console.log(res);
+    }
+    );
   }
 
 }

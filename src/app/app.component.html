@@ -1,2 +1,9 @@
 <h1>Image Upload</h1>
-<input type="file" (change)="imageUpload($event)">
+
+<div>
+  <form>
+    <input type="file" (change)="imageUpload($event)">
+    <br><br>
+    <button type="submit" (click)="submit()">Upload</button>
+  </form>
+</div>
