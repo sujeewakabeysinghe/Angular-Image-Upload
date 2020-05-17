@@ -26,7 +26,7 @@ const upload = multer({ storage: storage })
 
 Router.post('/upload', upload.single('file'),(req, res, next)=>{
   const NewImage=new Image({
-    data:fs.readFileSync(req.file.path),
+    data:fs.readFileSync(req.file.path).toString('base64'),
     contentType:req.file.mimetype
   });
 
@@ -36,8 +36,8 @@ Router.post('/upload', upload.single('file'),(req, res, next)=>{
       res.json({state:false,msg:"Failed To Update!"});
     }
     else{
-      console.log(result);
-      res.json({state:true,msg:"Successfully Updated!"});
+      res.contentType(NewImage.contentType);
+      res.send(NewImage.data);
     }
   });
 });
