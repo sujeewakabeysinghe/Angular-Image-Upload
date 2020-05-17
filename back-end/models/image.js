@@ -2,13 +2,15 @@ const Mongoose=require("mongoose");
 const Schema=Mongoose.Schema;
 
 
-const Image=new Schema();
+const Image=new Schema({
+  data:{type:Buffer,required:true},
+  contentType:{type:String,required:true}
+});
 
 
 const Images=module.exports=Mongoose.model("images",Image);
 
 
 module.exports.upload=function(image,callback){
-  console.log(image);
-  //Images.insertOne(image,callback);
+  image.save(callback);
 };
