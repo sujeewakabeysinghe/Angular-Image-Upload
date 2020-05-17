@@ -25,7 +25,7 @@ export class AppComponent {
   submit(){
     let formData=new FormData();
     formData.append('file',this.images);
-    this.http.post('http://localhost:3000/file',formData).subscribe(res=>{
+    this.http.post('http://localhost:3000/image/upload',formData).subscribe(res=>{
       console.log(res);
     }
     );

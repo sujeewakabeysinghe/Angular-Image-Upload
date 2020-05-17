@@ -2,7 +2,7 @@
 
 <div>
   <form>
-    <input type="file" (change)="imageUpload($event)">
+    <input type="file" (change)="imageUpload($event)" accept="image/*">
     <br><br>
     <button type="submit" (click)="submit()">Upload</button>
   </form>
